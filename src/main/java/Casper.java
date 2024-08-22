@@ -9,8 +9,9 @@ public class Casper {
         int currTaskIndex = 0;
 
         printLine();
-        print("Hello! I'm Casper\n What can I do for you?\n");
+        print("Hello! I'm Casper\n What can I do for you?");
         printLine();
+        print("");
 
         while (chat) {
             String input = scanner.nextLine();
@@ -35,6 +36,7 @@ public class Casper {
             }
 
             printLine();
+            print("");
         }
     }
 
@@ -43,6 +45,6 @@ public class Casper {
     }
 
     private static void printLine() {
-        print("____________________________________________________________\n");
+        print("____________________________________________________________");
     }
 }
