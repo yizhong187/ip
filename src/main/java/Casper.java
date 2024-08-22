@@ -23,6 +23,11 @@ public class Casper {
                 print("Bye. Hope to see you again soon!");
 
             } else if (Objects.equals(input, "list" )) {
+
+                if (currTaskIndex == 0) {
+                    print("No tasks added.");
+                }
+
                 for (int i = 0; i < tasks.length; i++) {
                     if (tasks[i] == null) {
                         break;
@@ -31,29 +36,63 @@ public class Casper {
                 }
 
             } else {
-                String[] splitString = input.split(" ", 2);
+                String[] parts = input.split(" ", 2);
+                String keyword = parts[0];
+                String message = parts.length > 1 ? parts[1] : null;
 
-                if ((Objects.equals(splitString[0], "mark") || Objects.equals(splitString[0], "unmark")) &&
-                        splitString.length == 2 &&
-                        splitString[1].matches("-?\\d+") &&
-                        Integer.parseInt(splitString[1]) <= currTaskIndex
-                ) {
-                    int taskIndex = Integer.parseInt(splitString[1]) - 1;
+                if (message == null) {
+                    print("Invalid format! Correct format: [keyword] [message]");
+                    printLine();
+                    print("");
+                    continue;
+                }
 
-                    if (Objects.equals(splitString[0], "mark")) {
-                        tasks[taskIndex].mark();
-                        print("Nice! I've marked this task as done:\n" + tasks[taskIndex]);
+                switch (keyword) {
+                    case "mark", "unmark" -> {
+                        if (message.matches("-?\\d+" ) && Integer.parseInt(message) <= currTaskIndex) {
+                            int taskIndex = Integer.parseInt(message) - 1;
 
-                    } else {
-                        tasks[taskIndex].unmark();
-                        print("OK, I've marked this task as not done yet:\n" + tasks[taskIndex]);
+                            if (Objects.equals(keyword, "mark" )) {
+                                tasks[taskIndex].mark();
+                                print("Nice! I've marked this task as done:\n" + tasks[taskIndex]);
 
+                            } else {
+                                tasks[taskIndex].unmark();
+                                print("OK, I've marked this task as not done yet:\n" + tasks[taskIndex]);
+                            }
+                        }
                     }
 
-                } else {
-                    tasks[currTaskIndex] = new Task(input);
-                    currTaskIndex++;
-                    print("added: " + input);
+                    case "todo" -> {
+                        tasks[currTaskIndex] = new ToDo(message);
+                        currTaskIndex++;
+                        printAddedTask(tasks[currTaskIndex - 1].toString(), currTaskIndex);
+                    }
+
+                    case "deadline" -> {
+                        String[] deadlineParts = message.split(" /by ", 2);
+                        String description = deadlineParts[0];
+                        String by = deadlineParts.length > 1 ? deadlineParts[1] : "";
+                        tasks[currTaskIndex] = new Deadline(description, by);
+                        currTaskIndex++;
+                        printAddedTask(tasks[currTaskIndex - 1].toString(), currTaskIndex);
+                    }
+
+                    case "event" -> {
+                        String[] eventParts = message.split(" /from ", 2);
+                        String description = eventParts[0];
+
+                        String[] eventPartsTwo = eventParts.length > 1 ? eventParts[1].split(" /to ", 2) : new String[]{"", ""};
+                        String from = eventPartsTwo[0];
+                        String to = eventPartsTwo.length > 1 ? eventPartsTwo[1] : "";
+
+                        tasks[currTaskIndex] = new Event(description, from, to);
+                        currTaskIndex++;
+                        printAddedTask(tasks[currTaskIndex - 1].toString(), currTaskIndex);
+                    }
+
+                    default ->
+                            print("Unknown command: " + keyword);
                 }
             }
 
@@ -71,4 +110,9 @@ public class Casper {
         print("____________________________________________________________");
     }
 
+    private static void printAddedTask(String newTask, int taskCount) {
+        print("Got it. I've added this task:\n" +
+                newTask + "\n" +
+                "Now you have " + taskCount + " tasks in the list.");
+    }
 }
