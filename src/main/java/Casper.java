@@ -8,17 +8,13 @@ public class Casper {
         String[] tasks = new String[100];
         int currTaskIndex = 0;
 
-        print("""
-                ____________________________________________________________\s
-                Hello! I'm Casper\s
-                What can I do for you?\s
-                ____________________________________________________________\s
-                """
-        );
+        printLine();
+        print("Hello! I'm Casper\n What can I do for you?\n");
+        printLine();
 
         while (chat) {
             String input = scanner.nextLine();
-            print("____________________________________________________________");
+            printLine();
 
             if (Objects.equals(input, "bye" )) {
                 chat = false;
@@ -38,11 +34,15 @@ public class Casper {
                 print("added: " + input);
             }
 
-            print("____________________________________________________________\n");
+            printLine();
         }
     }
 
     private static void print(String text) {
         System.out.println(text);
+    }
+
+    private static void printLine() {
+        print("____________________________________________________________\n");
     }
 }
