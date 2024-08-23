@@ -15,9 +15,9 @@ Prerequisites: JDK 17, update Intellij to the most recent version.
    In the same dialog, set the **Project language level** field to the `SDK default` option.
 3. After that, locate the `src/main/java/Casper.java` file, right-click it, and choose `Run Casper.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
-                ('-.      .-')     _ (`-.    ('-.  _  .-')                   ('-. .-.   ('-.     .-') _    
-               ( OO ).-. ( OO ).  ( (OO  ) _(  OO)( \( -O )                 ( OO )  /  ( OO ).-.(  OO) )   
-      .-----.  / . --. /(_)---\_)_.`     \(,------.,------.         .-----. ,--. ,--.  / . --. //     '._  
+                 ('-.      .-')     _ (`-.    ('-.  _  .-')                   ('-. .-.   ('-.     .-') _    
+                ( OO ).-. ( OO ).  ( (OO  ) _(  OO)( \( -O )                 ( OO )  /  ( OO ).-.(  OO) )   
+       .-----.  / . --. /(_)---\_)_.`     \(,------.,------.         .-----. ,--. ,--.  / . --. //     '._  
       '  .--./  | \-.  \ /    _ |(__...--'' |  .---'|   /`. '       '  .--./ |  | |  |  | \-.  \ |'--...__)
       |  |('-..-'-'  |  |\  :` `. |  /  | | |  |    |  /  | |       |  |('-. |   .|  |.-'-'  |  |'--.  .--'
      /_) |OO  )\| |_.'  | '..`''.)|  |_.' |(|  '--. |  |_.' |      /_) |OO  )|       | \| |_.'  |   |  |    
