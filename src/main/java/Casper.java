@@ -16,15 +16,13 @@ public class Casper {
         printLine();
         print("");
 
-        while (chat) {
+        while (true) {
             String input = scanner.nextLine();
             printLine();
 
             if (Objects.equals(input, "bye" )) {
-                chat = false;
                 print("Bye. Hope to see you again soon!");
                 printLine();
-                print("");
                 break;
             }
 

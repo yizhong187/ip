@@ -30,7 +30,7 @@ public class CommandProcessor {
                 return result.toString();
             }
 
-            case "mark", "unmark" -> {
+            case "mark", "unmark", "delete" -> {
                 argumentCheck(argument, command);
 
                 if (!argument.matches("-?\\d+" )) {
@@ -46,12 +46,15 @@ public class CommandProcessor {
                 if (Objects.equals(command, "mark")) {
                     tasks.get(taskIndex).mark();
                     return ("Nice! I've marked this task as done:\n" + tasks.get(taskIndex));
-                } else {
+                } else if (Objects.equals(command, "unmark")){
                     tasks.get(taskIndex).unmark();
                     return ("I have unmarked this task:\n" + tasks.get(taskIndex));
+                } else {
+                    Task toBeDeleted = tasks.get(taskIndex);
+                    tasks.remove(taskIndex);
+                    return ("I have deleted the task:\n" + toBeDeleted);
                 }
             }
-
 
             case "todo" -> {
                 argumentCheck(argument, command);
