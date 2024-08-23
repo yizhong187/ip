@@ -1,6 +1,6 @@
-# Casper project template
+# Casper Chat
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This is my individual project for CS2103T Software Engineering.
 
 ## Setting up in Intellij
 
@@ -15,10 +15,13 @@ Prerequisites: JDK 17, update Intellij to the most recent version.
    In the same dialog, set the **Project language level** field to the `SDK default` option.
 3. After that, locate the `src/main/java/Casper.java` file, right-click it, and choose `Run Casper.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
+                ('-.      .-')     _ (`-.    ('-.  _  .-')                   ('-. .-.   ('-.     .-') _    
+               ( OO ).-. ( OO ).  ( (OO  ) _(  OO)( \( -O )                 ( OO )  /  ( OO ).-.(  OO) )   
+      .-----.  / . --. /(_)---\_)_.`     \(,------.,------.         .-----. ,--. ,--.  / . --. //     '._  
+      '  .--./  | \-.  \ /    _ |(__...--'' |  .---'|   /`. '       '  .--./ |  | |  |  | \-.  \ |'--...__)
+      |  |('-..-'-'  |  |\  :` `. |  /  | | |  |    |  /  | |       |  |('-. |   .|  |.-'-'  |  |'--.  .--'
+     /_) |OO  )\| |_.'  | '..`''.)|  |_.' |(|  '--. |  |_.' |      /_) |OO  )|       | \| |_.'  |   |  |    
+     ||  |`-'|  |  .-.  |.-._)   \|  .___.' |  .--' |  .  '.'      ||  |`-'| |  .-.  |  |  .-.  |   |  |
+    (_'  '--'\  |  | |  |\       /|  |      |  `---.|  |\  \      (_'  '--'\ |  | |  |  |  | |  |   |  |    
+       `-----'  `--' `--' `-----' `--'      `------'`--' '--'        `-----' `--' `--'  `--' `--'   `--'
    ```
