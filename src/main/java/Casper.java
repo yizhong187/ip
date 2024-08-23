@@ -11,7 +11,7 @@ public class Casper {
         boolean chat = true;
         ArrayList<Task> tasks = new ArrayList<>();
 
-        printLine();
+        printCasper();
         print("Hello! I'm Casper!\nWhat can I do for you?");
         printLine();
         print("");
@@ -50,5 +50,20 @@ public class Casper {
         print("Got it. I've added this task:\n" +
                 newTask + "\n" +
                 "Now you have " + taskCount + " tasks in the list.");
+    }
+
+    private static void printCasper() {
+        print("""
+                              ('-.      .-')     _ (`-.    ('-.  _  .-')                   ('-. .-.   ('-.     .-') _   \s
+                             ( OO ).-. ( OO ).  ( (OO  ) _(  OO)( \\( -O )                 ( OO )  /  ( OO ).-.(  OO) )  \s
+                    .-----.  / . --. /(_)---\\_)_.`     \\(,------.,------.         .-----. ,--. ,--.  / . --. //     '._ \s
+                   '  .--./  | \\-.  \\ /    _ |(__...--'' |  .---'|   /`. '       '  .--./ |  | |  |  | \\-.  \\ |'--...__)
+                   |  |('-..-'-'  |  |\\  :` `. |  /  | | |  |    |  /  | |       |  |('-. |   .|  |.-'-'  |  |'--.  .--'
+                  /_) |OO  )\\| |_.'  | '..`''.)|  |_.' |(|  '--. |  |_.' |      /_) |OO  )|       | \\| |_.'  |   |  |   \s
+                  ||  |`-'|  |  .-.  |.-._)   \\|  .___.' |  .--' |  .  '.'      ||  |`-'| |  .-.  |  |  .-.  |   |  |
+                 (_'  '--'\\  |  | |  |\\       /|  |      |  `---.|  |\\  \\      (_'  '--'\\ |  | |  |  |  | |  |   |  |   \s
+                    `-----'  `--' `--' `-----' `--'      `------'`--' '--'        `-----' `--' `--'  `--' `--'   `--'
+                """);
+
     }
 }
