@@ -1,3 +1,4 @@
+import exceptions.CorruptedSavedTasksException;
 import exceptions.CustomIOException;
 import tasks.Task;
 import exceptions.ExceptionWithSolution;
@@ -26,10 +27,12 @@ public class Casper {
             print("");
         } catch (CustomIOException e) {
             print(e.getMessage());
+        } catch (CorruptedSavedTasksException e) {
+            print(e.getMessage());
         }
 
         printCasper();
-        print("Hello! I'm Casper!\nWhat can I do for you?");
+        print("Hello! I'm Casper!\nWhat can I do for you today?");
         printLine();
         print("");
 
