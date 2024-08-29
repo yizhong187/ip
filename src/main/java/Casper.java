@@ -1,5 +1,3 @@
-package main.java;
-
 import exceptions.CustomIOException;
 import tasks.Task;
 import exceptions.ExceptionWithSolution;
@@ -16,7 +14,7 @@ import static utils.PrintUtils.printLine;
 
 public class Casper {
 
-    private static final String FILE_PATH = "src/main/java/data/casper.txt";
+    protected static final String FILE_PATH = "src/main/java/data/casper.txt";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -48,6 +46,8 @@ public class Casper {
             try {
                 print(CommandProcessor.processInput(input, tasks));
             } catch (ExceptionWithSolution e) {
+                print(e.getMessage());
+            } catch (CustomIOException e) {
                 print(e.getMessage());
             }
 
