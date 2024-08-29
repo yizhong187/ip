@@ -1,6 +1,8 @@
 package utils;
 
+import exceptions.CorruptedSavedTasksException;
 import exceptions.CustomIOException;
+import exceptions.InvalidDateTimeException;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Task;
@@ -10,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +57,10 @@ public class FileUtils {
         fw.close();
     }
 
-    public static void addLineToFile(String filePath, String textToAppend) throws IOException {
+    public static void addLineToFile(String filePath, String newLine) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
         fw.write(System.lineSeparator());
-        fw.write(textToAppend);
+        fw.write(newLine);
         fw.close();
     }
 
@@ -91,14 +94,14 @@ public class FileUtils {
 
     public static void editTaskInSavedTasks(String filePath, String newText, int lineNumber) throws CustomIOException {
         try {
-            editLineInFile(filePath, newText, lineNumber);
+            editLineInFile(filePath, newText, lineNumber + 1);
         } catch (IOException e) {
             throw new CustomIOException(e.getMessage());
         }
     }
     public static void removeTaskFromSavedTasks(String filePath, int lineNumber) throws CustomIOException {
         try {
-            deleteLineInFile(filePath, lineNumber);
+            deleteLineInFile(filePath, lineNumber + 1);
         } catch (IOException e) {
             throw new CustomIOException(e.getMessage());
         }
@@ -112,23 +115,29 @@ public class FileUtils {
         }
     }
 
-    public static void addSavedTasksToTaskArray(String filePath, ArrayList<Task> tasks) throws CustomIOException {
+    public static void addSavedTasksToTaskArray(String filePath, ArrayList<Task> tasks) throws CustomIOException, CorruptedSavedTasksException {
+        int lineNumber = 1;
+
         try {
             String[] lines = getFileContentsAsArray(filePath);
 
-            print("Loaded tasks list from local storage!");
-            printLine();
-
-            for (String line : lines) {
+            for (String line : Arrays.copyOfRange(lines, 1, lines.length)) {
                 String[] parts = line.split(" \\| ");
                 String eventType = parts[0];
                 boolean isDone = parts[1].equals("1");
 
                 switch (eventType) {
                     case "todo" -> tasks.add(new ToDo(parts[2], isDone));
-                    case "deadline" -> tasks.add(new Deadline(parts[2], parts[3], isDone));
-                    case "event" -> tasks.add(new Event(parts[2], parts[3], parts[4], isDone));
+                    case "deadline" -> tasks.add(
+                            new Deadline(parts[2], DateTimeUtils.convertStringToDateTime(parts[3]), isDone));
+                    case "event" -> tasks.add(
+                            new Event(parts[2],
+                                    DateTimeUtils.convertStringToDateTime(parts[3]),
+                                    DateTimeUtils.convertStringToDateTime(parts[4]),
+                                    isDone));
                 }
+
+                lineNumber++;
             }
         } catch (FileNotFoundException e) {
             try {
@@ -140,6 +149,8 @@ public class FileUtils {
             } catch (IOException ioException) {
                 throw new CustomIOException(ioException.getMessage());
             }
+        } catch (InvalidDateTimeException e) {
+            throw new CorruptedSavedTasksException(lineNumber);
         }
     }
 
