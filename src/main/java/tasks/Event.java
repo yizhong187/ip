@@ -24,6 +24,11 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
     }
 
+    @Override
+    public String toSaveString() {
+        return String.format("event | %d | %s | %s | %s", super.isDone ? 1 : 0, this.description, this.from, this.to);
+    }
+
     public static String[] parseArgument(String argument) throws MissingArgumentException{
         String[] partsOne = argument.split(" /from ", 2);
         String description = partsOne[0];

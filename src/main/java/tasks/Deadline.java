@@ -20,6 +20,11 @@ public class Deadline extends Task{
         return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
 
+    @Override
+    public String toSaveString() {
+        return String.format("deadline | %d | %s | %s", super.isDone ? 1 : 0, this.description, this.by);
+    }
+
     public static String[] parseArgument(String argument) throws MissingArgumentException {
         String[] parts = argument.split(" /by ", 2);
         String description = parts[0];

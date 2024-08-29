@@ -1,6 +1,6 @@
 package tasks;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -30,5 +30,7 @@ public class Task {
     public void unmark() {
         isDone = false;
     }
+
+    public abstract String toSaveString();
 }
 
