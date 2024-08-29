@@ -1,3 +1,7 @@
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.ToDo;
 import exceptions.*;
 
 import java.util.ArrayList;
