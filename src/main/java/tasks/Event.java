@@ -2,18 +2,23 @@ package tasks;
 
 import exceptions.MissingArgumentException;
 
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
+
+import static utils.DateTimeUtils.convertDateTimeToString;
+
 public class Event extends Task {
 
-    protected String from;
-    protected String to;
+    protected LocalDateTime from;
+    protected LocalDateTime to;
 
-    public Event(String description, String from, String to) {
+    public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;
         this.to = to;
     }
 
-    public Event(String description, String from, String to, boolean isDone) {
+    public Event(String description, LocalDateTime from, LocalDateTime to, boolean isDone) {
         super(description, isDone);
         this.from = from;
         this.to = to;
@@ -21,12 +26,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
+        return "[E]" + super.toString() + " (from: " + convertDateTimeToString(this.from) + " to: " + convertDateTimeToString(this.to) + ")";
     }
 
     @Override
     public String toSaveString() {
-        return String.format("event | %d | %s | %s | %s", super.isDone ? 1 : 0, this.description, this.from, this.to);
+        return String.format("event | %d | %s | %s | %s", super.isDone ? 1 : 0, this.description, convertDateTimeToString(this.from), convertDateTimeToString(this.to));
     }
 
     public static String[] parseArgument(String argument) throws MissingArgumentException{

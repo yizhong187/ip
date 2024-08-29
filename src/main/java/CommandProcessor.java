@@ -7,7 +7,10 @@ import tasks.ToDo;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static utils.FileUtils.*;
+import static utils.FileUtils.addTaskToSavedTasks;
+import static utils.FileUtils.editTaskInSavedTasks;
+import static utils.FileUtils.removeTaskFromSavedTasks;
+import static utils.DateTimeUtils.convertStringToDateTime;
 
 public class CommandProcessor {
     public static String processInput(String input, ArrayList<Task> tasks) throws
@@ -72,10 +75,10 @@ public class CommandProcessor {
                     tasks.add(new ToDo(argument));
                 } else if (Objects.equals(command, "deadline")){
                     String[] parsedArguments = Deadline.parseArgument(argument);
-                    tasks.add(new Deadline(parsedArguments[0], parsedArguments[1]));
+                    tasks.add(new Deadline(parsedArguments[0], convertStringToDateTime(parsedArguments[1])));
                 } else {
                     String[] parsedArguments = Event.parseArgument(argument);
-                    tasks.add(new Event(parsedArguments[0], parsedArguments[1], parsedArguments[2]));
+                    tasks.add(new Event(parsedArguments[0], convertStringToDateTime(parsedArguments[1]), convertStringToDateTime(parsedArguments[2])));
                 }
 
                 addTaskToSavedTasks(Casper.FILE_PATH, tasks.get(tasks.size() - 1).toSaveString());
