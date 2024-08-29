@@ -1,11 +1,17 @@
 import exceptions.*;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.ToDo;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static utils.FileUtils.*;
+
 public class CommandProcessor {
     public static String processInput(String input, ArrayList<Task> tasks) throws
-            ExceptionWithSolution {
+            ExceptionWithSolution, CustomIOException {
 
         // Break the input into command and argument with a method
         String[] parts = input.split(" ", 2);
@@ -45,37 +51,34 @@ public class CommandProcessor {
 
                 if (Objects.equals(command, "mark")) {
                     tasks.get(taskIndex).mark();
+                    editTaskInSavedTasks(Casper.FILE_PATH, tasks.get(taskIndex).toSaveString(), taskIndex + 1);
                     return ("Nice! I've marked this task as done:\n" + tasks.get(taskIndex));
                 } else if (Objects.equals(command, "unmark")){
                     tasks.get(taskIndex).unmark();
+                    editTaskInSavedTasks(Casper.FILE_PATH, tasks.get(taskIndex).toSaveString(), taskIndex + 1);
                     return ("I have unmarked this task:\n" + tasks.get(taskIndex));
                 } else {
                     Task toBeDeleted = tasks.get(taskIndex);
                     tasks.remove(taskIndex);
+                    removeTaskFromSavedTasks(Casper.FILE_PATH, taskIndex + 1);
                     return ("I have deleted the task:\n" + toBeDeleted);
                 }
             }
 
-            case "todo" -> {
+            case "todo", "deadline", "event" -> {
                 argumentCheck(argument, command);
 
-                tasks.add(new ToDo(argument));
-                return addedTaskMessage(tasks.get(tasks.size() - 1).toString(), tasks.size());
-            }
+                if (Objects.equals(command, "todo")) {
+                    tasks.add(new ToDo(argument));
+                } else if (Objects.equals(command, "deadline")){
+                    String[] parsedArguments = Deadline.parseArgument(argument);
+                    tasks.add(new Deadline(parsedArguments[0], parsedArguments[1]));
+                } else {
+                    String[] parsedArguments = Event.parseArgument(argument);
+                    tasks.add(new Event(parsedArguments[0], parsedArguments[1], parsedArguments[2]));
+                }
 
-            case "deadline" -> {
-                argumentCheck(argument, command);
-
-                String[] parsedArguments = Deadline.parseArgument(argument);
-                tasks.add(new Deadline(parsedArguments[0], parsedArguments[1]));
-                return addedTaskMessage(tasks.get(tasks.size() - 1).toString(), tasks.size());
-            }
-
-            case "event" -> {
-                argumentCheck(argument, command);
-
-                String[] parsedArguments = Event.parseArgument(argument);
-                tasks.add(new Event(parsedArguments[0], parsedArguments[1], parsedArguments[2]));
+                addTaskToSavedTasks(Casper.FILE_PATH, tasks.get(tasks.size() - 1).toSaveString());
                 return addedTaskMessage(tasks.get(tasks.size() - 1).toString(), tasks.size());
             }
 

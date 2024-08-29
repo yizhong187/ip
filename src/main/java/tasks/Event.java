@@ -1,3 +1,5 @@
+package tasks;
+
 import exceptions.MissingArgumentException;
 
 public class Event extends Task {
@@ -11,9 +13,20 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public Event(String description, String from, String to, boolean isDone) {
+        super(description, isDone);
+        this.from = from;
+        this.to = to;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
+    }
+
+    @Override
+    public String toSaveString() {
+        return String.format("event | %d | %s | %s | %s", super.isDone ? 1 : 0, this.description, this.from, this.to);
     }
 
     public static String[] parseArgument(String argument) throws MissingArgumentException{
