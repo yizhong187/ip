@@ -1,7 +1,6 @@
 package utils;
 
 import exceptions.CustomIOException;
-import exceptions.IndexOutOfRangeException;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Task;
@@ -55,20 +54,17 @@ public class FileUtils {
         fw.close();
     }
 
-    public static void appendToFile(String filePath, String textToAppend) throws IOException {
+    public static void addLineToFile(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
+        fw.write(System.lineSeparator());
         fw.write(textToAppend);
         fw.close();
     }
 
 
     public static void editLineInFile(String filePath, String newText, int lineNumber)
-            throws IOException, IndexOutOfRangeException {
+            throws IOException {
         String[] lines = getFileContentsAsArray(filePath);
-
-        if (lineNumber < 1 || lineNumber > lines.length) {
-            throw new IndexOutOfRangeException();
-        }
 
         lines[lineNumber - 1] = newText;
 
@@ -80,12 +76,8 @@ public class FileUtils {
         writeToFile(filePath, content.toString().trim());
     }
     public static void deleteLineInFile(String filePath, int lineNumber)
-            throws IOException, IndexOutOfRangeException {
+            throws IOException {
         String[] lines = getFileContentsAsArray(filePath);
-
-        if (lineNumber < 1 || lineNumber > lines.length) {
-            throw new IndexOutOfRangeException();
-        }
 
         StringBuilder content = new StringBuilder();
         for (int i = 0; i < lines.length; i++) {
@@ -95,6 +87,29 @@ public class FileUtils {
         }
 
         writeToFile(filePath, content.toString().trim());
+    }
+
+    public static void editTaskInSavedTasks(String filePath, String newText, int lineNumber) throws CustomIOException {
+        try {
+            editLineInFile(filePath, newText, lineNumber);
+        } catch (IOException e) {
+            throw new CustomIOException(e.getMessage());
+        }
+    }
+    public static void removeTaskFromSavedTasks(String filePath, int lineNumber) throws CustomIOException {
+        try {
+            deleteLineInFile(filePath, lineNumber);
+        } catch (IOException e) {
+            throw new CustomIOException(e.getMessage());
+        }
+    }
+
+    public static void addTaskToSavedTasks(String filePath, String newText) throws CustomIOException {
+        try {
+            addLineToFile(filePath, newText);
+        } catch (IOException e) {
+            throw new CustomIOException(e.getMessage());
+        }
     }
 
     public static void addSavedTasksToTaskArray(String filePath, ArrayList<Task> tasks) throws CustomIOException {
