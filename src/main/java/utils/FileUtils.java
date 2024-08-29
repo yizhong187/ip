@@ -2,7 +2,6 @@ package utils;
 
 import exceptions.CustomIOException;
 import exceptions.IndexOutOfRangeException;
-import exceptions.InvalidIndexException;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Task;
@@ -12,9 +11,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +61,7 @@ public class FileUtils {
         fw.close();
     }
 
+
     public static void editLineInFile(String filePath, String newText, int lineNumber)
             throws IOException, IndexOutOfRangeException {
         String[] lines = getFileContentsAsArray(filePath);
@@ -80,7 +77,24 @@ public class FileUtils {
             content.append(line).append("\n");
         }
 
-        writeToFile(filePath, content.toString());
+        writeToFile(filePath, content.toString().trim());
+    }
+    public static void deleteLineInFile(String filePath, int lineNumber)
+            throws IOException, IndexOutOfRangeException {
+        String[] lines = getFileContentsAsArray(filePath);
+
+        if (lineNumber < 1 || lineNumber > lines.length) {
+            throw new IndexOutOfRangeException();
+        }
+
+        StringBuilder content = new StringBuilder();
+        for (int i = 0; i < lines.length; i++) {
+            if (i != lineNumber - 1) {
+                content.append(lines[i]).append("\n");
+            }
+        }
+
+        writeToFile(filePath, content.toString().trim());
     }
 
     public static void addSavedTasksToTaskArray(String filePath, ArrayList<Task> tasks) throws CustomIOException {
