@@ -1,15 +1,32 @@
+import exceptions.CustomIOException;
+import tasks.Task;
 import exceptions.ExceptionWithSolution;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static utils.FileUtils.addSavedTasksToTaskArray;
+import static utils.PrintUtils.print;
+import static utils.PrintUtils.printCasper;
+import static utils.PrintUtils.printLine;
+
 public class Casper {
+
+    private static final String FILE_PATH = "src/main/java/data/casper.txt";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean chat = true;
         ArrayList<Task> tasks = new ArrayList<>();
+
+        try {
+            addSavedTasksToTaskArray(FILE_PATH, tasks);
+            print("");
+        } catch (CustomIOException e) {
+            print(e.getMessage());
+        }
 
         printCasper();
         print("Hello! I'm Casper!\nWhat can I do for you?");
@@ -29,41 +46,12 @@ public class Casper {
             try {
                 print(CommandProcessor.processInput(input, tasks));
             } catch (ExceptionWithSolution e) {
-                print(e.getLocalizedMessage());
+                print(e.getMessage());
             }
 
             printLine();
             print("");
         }
-
-    }
-
-    private static void print(String text) {
-        System.out.println(text);
-    }
-
-    private static void printLine() {
-        print("____________________________________________________________");
-    }
-
-    private static void printAddedTask(String newTask, int taskCount) {
-        print("Got it. I've added this task:\n" +
-                newTask + "\n" +
-                "Now you have " + taskCount + " tasks in the list.");
-    }
-
-    private static void printCasper() {
-        print("""
-                              ('-.      .-')     _ (`-.    ('-.  _  .-')                   ('-. .-.   ('-.     .-') _   \s
-                             ( OO ).-. ( OO ).  ( (OO  ) _(  OO)( \\( -O )                 ( OO )  /  ( OO ).-.(  OO) )  \s
-                    .-----.  / . --. /(_)---\\_)_.`     \\(,------.,------.         .-----. ,--. ,--.  / . --. //     '._ \s
-                   '  .--./  | \\-.  \\ /    _ |(__...--'' |  .---'|   /`. '       '  .--./ |  | |  |  | \\-.  \\ |'--...__)
-                   |  |('-..-'-'  |  |\\  :` `. |  /  | | |  |    |  /  | |       |  |('-. |   .|  |.-'-'  |  |'--.  .--'
-                  /_) |OO  )\\| |_.'  | '..`''.)|  |_.' |(|  '--. |  |_.' |      /_) |OO  )|       | \\| |_.'  |   |  |   \s
-                  ||  |`-'|  |  .-.  |.-._)   \\|  .___.' |  .--' |  .  '.'      ||  |`-'| |  .-.  |  |  .-.  |   |  |
-                 (_'  '--'\\  |  | |  |\\       /|  |      |  `---.|  |\\  \\      (_'  '--'\\ |  | |  |  |  | |  |   |  |   \s
-                    `-----'  `--' `--' `-----' `--'      `------'`--' '--'        `-----' `--' `--'  `--' `--'   `--'
-                """);
 
     }
 }
