@@ -1,4 +1,4 @@
-package tasks;
+package casper.tasks;
 
 public abstract class Task {
     protected String description;

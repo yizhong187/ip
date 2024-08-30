@@ -1,4 +1,4 @@
-package tasks;
+package casper.tasks;
 
 public class ToDo extends Task{
     public ToDo(String description) {
