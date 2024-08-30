@@ -3,10 +3,10 @@ package casper;
 import casper.exceptions.CorruptedSavedTasksException;
 import casper.exceptions.CustomIOException;
 import casper.exceptions.ExceptionWithSolution;
-import components.Processor;
-import components.Storage;
-import components.TaskList;
-import components.Ui;
+import casper.components.Processor;
+import casper.components.Storage;
+import casper.components.TaskList;
+import casper.components.Ui;
 
 import java.util.Objects;
 import java.util.Scanner;
