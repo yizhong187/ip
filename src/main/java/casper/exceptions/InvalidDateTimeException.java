@@ -1,5 +1,9 @@
 package casper.exceptions;
 
+/**
+ * Thrown to indicate that the provided date-time format is invalid.
+ * This exception provides a suggested solution for the correct date-time format.
+ */
 public class InvalidDateTimeException extends ExceptionWithSolution{
     public InvalidDateTimeException() {
         super("Invalid date-time format.",
