@@ -1,6 +1,4 @@
-package exceptions;
-
-import java.io.IOException;
+package casper.exceptions;
 
 public class CustomIOException extends Exception{
 

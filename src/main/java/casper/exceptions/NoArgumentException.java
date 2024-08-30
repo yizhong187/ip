@@ -1,4 +1,4 @@
-package exceptions;
+package casper.exceptions;
 
 public class NoArgumentException extends ExceptionWithSolution{
     public NoArgumentException(String command) {

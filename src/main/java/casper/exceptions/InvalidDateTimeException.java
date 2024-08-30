@@ -1,4 +1,4 @@
-package exceptions;
+package casper.exceptions;
 
 public class InvalidDateTimeException extends ExceptionWithSolution{
     public InvalidDateTimeException() {

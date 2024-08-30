@@ -1,4 +1,4 @@
-package exceptions;
+package casper.exceptions;
 
 public class InvalidCommandException extends ExceptionWithSolution{
     public InvalidCommandException(String command) {

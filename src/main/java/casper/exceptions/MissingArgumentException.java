@@ -1,4 +1,4 @@
-package exceptions;
+package casper.exceptions;
 
 public class MissingArgumentException extends ExceptionWithSolution{
     public MissingArgumentException(String command, String missingArgument, String correctFormat) {

@@ -1,4 +1,4 @@
-package exceptions;
+package casper.exceptions;
 
 public class ExceptionWithSolution extends Exception{
     private String solution;
