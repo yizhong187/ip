@@ -1,4 +1,4 @@
-package components;
+package casper.components;
 
 import casper.exceptions.IndexOutOfRangeException;
 import casper.exceptions.InvalidIndexException;

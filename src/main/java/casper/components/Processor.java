@@ -1,4 +1,4 @@
-package components;
+package casper.components;
 
 import casper.CasperChat;
 import casper.exceptions.ExceptionWithSolution;

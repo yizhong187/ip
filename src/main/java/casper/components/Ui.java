@@ -1,4 +1,4 @@
-package components;
+package casper.components;
 
 public class Ui {
     public static void print(String text) {
