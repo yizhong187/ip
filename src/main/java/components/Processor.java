@@ -1,5 +1,6 @@
-package casper;
+package components;
 
+import casper.CasperChat;
 import casper.exceptions.ExceptionWithSolution;
 import casper.exceptions.CustomIOException;
 import casper.exceptions.MissingArgumentException;

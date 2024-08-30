@@ -1,4 +1,4 @@
-package casper;
+package components;
 
 import casper.exceptions.NoArgumentException;
 

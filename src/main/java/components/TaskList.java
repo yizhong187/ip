@@ -1,4 +1,4 @@
-package casper;
+package components;
 
 import casper.exceptions.IndexOutOfRangeException;
 import casper.exceptions.InvalidIndexException;
@@ -17,7 +17,7 @@ public class TaskList {
     @Override
     public String toString() {
         if (this.tasks.size() == 0) {
-            return "No casper.tasks added.";
+            return "No tasks added.";
         }
 
         StringBuilder result = new StringBuilder();
