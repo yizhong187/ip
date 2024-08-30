@@ -3,6 +3,10 @@ package casper;
 import casper.exceptions.CorruptedSavedTasksException;
 import casper.exceptions.CustomIOException;
 import casper.exceptions.ExceptionWithSolution;
+import components.Processor;
+import components.Storage;
+import components.TaskList;
+import components.Ui;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -10,7 +14,7 @@ import java.util.Scanner;
 
 public class CasperChat {
 
-    protected static final String FILE_PATH = "src/main/java/data/casper.txt";
+    public static final String FILE_PATH = "src/main/java/data/casper.txt";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
