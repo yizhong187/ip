@@ -1,7 +1,6 @@
-package utils;
+package casper;
 
-public class PrintUtils {
-
+public class Ui {
     public static void print(String text) {
         System.out.println(text);
     }
@@ -23,5 +22,27 @@ public class PrintUtils {
                     `-----'  `--' `--' `-----' `--'      `------'`--' '--'        `-----' `--' `--'  `--' `--'   `--'
                 """);
 
+    }
+
+    public static void printWelcomeMessage() {
+        printCasper();
+        print("Hello! I'm Casper!\nWhat can I do for you today?");
+        printLine();
+        print("");
+    }
+
+    public static void printByeMessage() {
+        print("Bye. Hope to see you again soon!");
+        printLine();
+    }
+
+    public static void printError(Exception e) {
+        print(e.getMessage());
+    }
+
+    public static void printAddedTaskMessage(String taskString, int taskCount) {
+        print("Got it. I've added this task:\n" +
+                taskString + "\n" +
+                "Now you have " + taskCount + " casper.tasks in the list.");
     }
 }
