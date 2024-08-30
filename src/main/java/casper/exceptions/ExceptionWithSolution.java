@@ -1,7 +1,7 @@
 package casper.exceptions;
 
 public class ExceptionWithSolution extends Exception{
-    private String solution;
+    private final String solution;
 
     public ExceptionWithSolution(String message, String solution) {
         super(message);
@@ -10,6 +10,6 @@ public class ExceptionWithSolution extends Exception{
 
     @Override
     public String getMessage() {
-        return String.format("ERROR: %s \n%s", super.getMessage(), this.solution);
+        return String.format("ERROR: %s\n%s", super.getMessage(), this.solution);
     }
 }
