@@ -17,8 +17,11 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for managing tasks in saved local file.
+ */
 public class Storage {
-    public static String getFileContentsAsString(String filePath) throws FileNotFoundException {
+    private static String getFileContentsAsString(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
 
@@ -34,7 +37,7 @@ public class Storage {
         return builder.toString();
     }
 
-    public static String[] getFileContentsAsArray(String filePath) throws FileNotFoundException {
+    private static String[] getFileContentsAsArray(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
         List<String> lines = new ArrayList<>();
@@ -48,20 +51,20 @@ public class Storage {
         return lines.toArray(new String[0]);
     }
 
-    public static void writeToFile(String filePath, String textToAdd) throws IOException {
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
         fw.close();
     }
 
-    public static void addLineToFile(String filePath, String newLine) throws IOException {
+    private static void addLineToFile(String filePath, String newLine) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
         fw.write(System.lineSeparator());
         fw.write(newLine);
         fw.close();
     }
 
-    public static void editLineInFile(String filePath, String newText, int lineNumber)
+    private static void editLineInFile(String filePath, String newText, int lineNumber)
             throws IOException {
         String[] lines = getFileContentsAsArray(filePath);
 
@@ -74,7 +77,7 @@ public class Storage {
 
         writeToFile(filePath, content.toString().trim());
     }
-    public static void deleteLineInFile(String filePath, int lineNumber)
+    private static void deleteLineInFile(String filePath, int lineNumber)
             throws IOException {
         String[] lines = getFileContentsAsArray(filePath);
 
@@ -88,6 +91,14 @@ public class Storage {
         writeToFile(filePath, content.toString().trim());
     }
 
+    /**
+     * Edits a specific line in a file where tasks are saved.
+     *
+     * @param filePath The path to the file.
+     * @param newText The new text to replace the existing line.
+     * @param lineNumber The line number to edit (0-based index).
+     * @throws CustomIOException If an I/O error occurs during the operation.
+     */
     public static void editTaskInSavedTasks(String filePath, String newText, int lineNumber) throws CustomIOException {
         try {
             editLineInFile(filePath, newText, lineNumber + 1);
@@ -95,6 +106,14 @@ public class Storage {
             throw new CustomIOException(e.getMessage());
         }
     }
+
+    /**
+     * Removes a specific line from a file where tasks are saved.
+     *
+     * @param filePath The path to the file.
+     * @param lineNumber The line number to remove (0-based index).
+     * @throws CustomIOException If an I/O error occurs during the operation.
+     */
     public static void removeTaskFromSavedTasks(String filePath, int lineNumber) throws CustomIOException {
         try {
             deleteLineInFile(filePath, lineNumber + 1);
@@ -103,6 +122,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds a new task to the end of a file where tasks are saved.
+     *
+     * @param filePath The path to the file.
+     * @param newText The text to add as a new task.
+     * @throws CustomIOException If an I/O error occurs during the operation.
+     */
     public static void addTaskToSavedTasks(String filePath, String newText) throws CustomIOException {
         try {
             addLineToFile(filePath, newText);
@@ -111,6 +137,14 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds tasks from a saved file to a TaskList.
+     *
+     * @param filePath The path to the file.
+     * @param taskList The TaskList to which tasks should be added.
+     * @throws CustomIOException If an I/O error occurs during the operation.
+     * @throws CorruptedSavedTasksException If the file contains corrupted task data.
+     */
     public static void addSavedTasksToTaskList(String filePath, TaskList taskList)
             throws CustomIOException, CorruptedSavedTasksException {
         int lineNumber = 1;

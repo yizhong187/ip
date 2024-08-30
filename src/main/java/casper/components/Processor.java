@@ -13,7 +13,21 @@ import java.util.Objects;
 
 import static casper.utils.DateTimeUtils.convertStringToDateTime;
 
+/**
+ * Processes user input commands and manages tasks in the task list.
+ */
 public class Processor {
+
+    /**
+     * Processes the user input command and updates the task list accordingly.
+     *
+     * @param input The user input command to process.
+     * @param taskList The task list to which the command will be applied.
+     * @throws ExceptionWithSolution If there is an issue with the command that needs a solution.
+     * @throws CustomIOException If an I/O error occurs while interacting with the storage.
+     * @throws MissingArgumentException If required arguments are missing for a specific command.
+     * @throws InvalidCommandException If the command is invalid or not recognized.
+     */
     public static void processInput(String input, TaskList taskList) throws
             ExceptionWithSolution, CustomIOException {
 

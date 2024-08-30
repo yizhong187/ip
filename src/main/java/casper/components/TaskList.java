@@ -6,14 +6,28 @@ import casper.tasks.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
 
+    /**
+     * Initializes a new empty TaskList.
+     */
     private ArrayList<Task> tasks;
 
+    /**
+     * Initializes a new empty TaskList.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Returns a string representation of the TaskList.
+     *
+     * @return A string listing all tasks, or "No tasks added." if the list is empty.
+     */
     @Override
     public String toString() {
         if (this.tasks.size() == 0) {
@@ -31,35 +45,86 @@ public class TaskList {
         return result.toString();
     }
 
+    /**
+     * Marks a task as complete.
+     *
+     * @param index The index of the task to mark.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     public void markTask(int index) {
         this.tasks.get(index).mark();
     }
 
+    /**
+     * Unmarks a task as incomplete.
+     *
+     * @param index The index of the task to unmark.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     public void unmarkTask(int index) {
         this.tasks.get(index).unmark();
     }
 
+    /**
+     * Removes a task from the list.
+     *
+     * @param index The index of the task to remove.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     public void removeTask(int index) {
         this.tasks.remove(index);
     }
 
+    /**
+     * Adds a new task to the list.
+     *
+     * @param task The task to add.
+     */
     public void addTask(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Gets the string representation of a task at a specific index.
+     *
+     * @param index The index of the task.
+     * @return A string representing the task.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     public String getTaskString(int index) {
         return this.tasks.get(index).toString();
     }
 
+    /**
+     * Gets the string representation for saving to local storage of a task at a specific index.
+     *
+     * @param index The index of the task.
+     * @return A string representing the task in a format suitable for saving.
+     * @throws IndexOutOfBoundsException if the index is out of range.
+     */
     public String getTaskSaveString(int index) {
         return this.tasks.get(index).toSaveString();
     }
 
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return The number of tasks.
+     */
     public int size() {
         return this.tasks.size();
     }
 
-    public void checkIndexValidity(String argument, String command) throws IndexOutOfRangeException, InvalidIndexException{
+    /**
+     * Checks the validity of an index argument.
+     *
+     * @param argument The index argument as a string.
+     * @param command The command that requires index validation.
+     * @throws IndexOutOfRangeException if the index is out of range.
+     * @throws InvalidIndexException if the argument is not a valid integer.
+     */
+    public void checkIndexValidity(String argument, String command)
+            throws IndexOutOfRangeException, InvalidIndexException{
         if (!argument.matches("-?\\d+" )) {
             throw new InvalidIndexException(command);
         }
