@@ -1,12 +1,12 @@
-package utils;
+package casper;
 
-import exceptions.CorruptedSavedTasksException;
-import exceptions.CustomIOException;
-import exceptions.InvalidDateTimeException;
-import tasks.Deadline;
-import tasks.Event;
-import tasks.Task;
-import tasks.ToDo;
+import casper.exceptions.CorruptedSavedTasksException;
+import casper.exceptions.CustomIOException;
+import casper.exceptions.InvalidDateTimeException;
+import casper.tasks.Deadline;
+import casper.tasks.Event;
+import casper.tasks.ToDo;
+import casper.utils.DateTimeUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,10 +17,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utils.PrintUtils.print;
-import static utils.PrintUtils.printLine;
-
-public class FileUtils {
+public class Storage {
     public static String getFileContentsAsString(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
@@ -63,7 +60,6 @@ public class FileUtils {
         fw.write(newLine);
         fw.close();
     }
-
 
     public static void editLineInFile(String filePath, String newText, int lineNumber)
             throws IOException {
@@ -115,7 +111,8 @@ public class FileUtils {
         }
     }
 
-    public static void addSavedTasksToTaskArray(String filePath, ArrayList<Task> tasks) throws CustomIOException, CorruptedSavedTasksException {
+    public static void addSavedTasksToTaskList(String filePath, TaskList taskList)
+            throws CustomIOException, CorruptedSavedTasksException {
         int lineNumber = 1;
 
         try {
@@ -127,10 +124,10 @@ public class FileUtils {
                 boolean isDone = parts[1].equals("1");
 
                 switch (eventType) {
-                    case "todo" -> tasks.add(new ToDo(parts[2], isDone));
-                    case "deadline" -> tasks.add(
+                    case "todo" -> taskList.addTask(new ToDo(parts[2], isDone));
+                    case "deadline" -> taskList.addTask(
                             new Deadline(parts[2], DateTimeUtils.convertStringToDateTime(parts[3]), isDone));
-                    case "event" -> tasks.add(
+                    case "event" -> taskList.addTask(
                             new Event(parts[2],
                                     DateTimeUtils.convertStringToDateTime(parts[3]),
                                     DateTimeUtils.convertStringToDateTime(parts[4]),
@@ -142,10 +139,7 @@ public class FileUtils {
         } catch (FileNotFoundException e) {
             try {
                 File file = new File(filePath);
-                if (file.createNewFile()) {
-                    print("Tasks list is now saved locally! ");
-                    printLine();
-                }
+                file.createNewFile();
             } catch (IOException ioException) {
                 throw new CustomIOException(ioException.getMessage());
             }
