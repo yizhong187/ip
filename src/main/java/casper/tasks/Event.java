@@ -33,22 +33,4 @@ public class Event extends Task {
         return String.format("event | %d | %s | %s | %s", super.isDone ? 1 : 0, this.description, convertDateTimeToString(this.from), convertDateTimeToString(this.to));
     }
 
-    public static String[] parseArgument(String argument) throws MissingArgumentException{
-        String[] partsOne = argument.split(" /from ", 2);
-        String description = partsOne[0];
-        if (partsOne.length == 1) {
-            throw new MissingArgumentException("event", "/from", 
-                    "event [task description] /from [start time] /to [end time]");
-        }
-
-        String[] partsTwo = partsOne[1].split(" /to ", 2);
-        String from = partsTwo[0];
-        if (partsTwo.length == 1) {
-            throw new MissingArgumentException("event", "/to",
-                    "event [task description] /from [start time] /to [end time]");
-        }
-        
-        String to = partsTwo[1];
-        return new String[]{description, from, to};
-    }
 }
