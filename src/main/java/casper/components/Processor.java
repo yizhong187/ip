@@ -36,7 +36,6 @@ public class Processor {
         String argument = inputParts.length > 1 ? inputParts[1] : null;
 
         switch (command) {
-
             case "list" -> {
                 Ui.print(taskList.toString());
             }
@@ -67,6 +66,11 @@ public class Processor {
                     Storage.removeTaskFromSavedTasks(CasperChat.FILE_PATH, taskIndex + 1);
                     Ui.print("I have deleted the task:\n" + toBeDeletedTaskString);
                 }
+            }
+
+            case "find" -> {
+                Parser.argumentCheck(argument, command);
+                Ui.printFoundTasks(taskList.find(argument), argument);
             }
 
             case "todo", "deadline", "event" -> {

@@ -72,6 +72,22 @@ public class Ui {
     public static void printAddedTaskMessage(String taskString, int taskCount) {
         print("Got it. I've added this task:\n" +
                 taskString + "\n" +
-                "Now you have " + taskCount + " casper.tasks in the list.");
+                "Now you have " + taskCount + " task(s) in the list.");
+    }
+
+    /**
+     * Prints the tasks that match the specified keyword.
+     *
+     * @param tasks The string containing the tasks that match the keyword, formatted with task indices.
+     *              If no tasks match, this string should be empty.
+     * @param keyword The keyword used to search the tasks.
+     */
+    public static void printFoundTasks(String tasks, String keyword){
+        if (tasks.equals("")) {
+            print(String.format("No task found that matches '%s'.", keyword));
+        } else {
+            print(String.format("Here are the task(s) matching '%s':", keyword));
+            print(tasks);
+        }
     }
 }

@@ -124,7 +124,7 @@ public class TaskList {
      * @throws InvalidIndexException if the argument is not a valid integer.
      */
     public void checkIndexValidity(String argument, String command)
-            throws IndexOutOfRangeException, InvalidIndexException{
+            throws IndexOutOfRangeException, InvalidIndexException {
         if (!argument.matches("-?\\d+" )) {
             throw new InvalidIndexException(command);
         }
@@ -134,10 +134,25 @@ public class TaskList {
         }
     }
 
-    private int convertNegativeIndex(int index) {
-        if (index < 0) {
-            return this.tasks.size() + index;
+    /**
+     * Finds tasks in the task list that contain the specified keyword in their description.
+     *
+     * @param keyword The keyword to search for in the task descriptions.
+     * @return A string containing a list of tasks that include the keyword in their description,
+     *         formatted with the task's index in the list. Each task is displayed on a new line.
+     *         If no tasks match the keyword, the returned string will be empty.
+     */
+    public String find(String keyword) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).isKeywordInDescription(keyword)) {
+                result.append((i + 1)).append(". " ).append(this.tasks.get(i));
+                if (i < this.tasks.size() - 1) {
+                    result.append("\n");
+                }
+            }
         }
-        return index;
+        return result.toString();
     }
+
 }
