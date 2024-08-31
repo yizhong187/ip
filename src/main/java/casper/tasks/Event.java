@@ -47,7 +47,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + convertDateTimeToString(this.from) + " to: " + convertDateTimeToString(this.to) + ")";
+        return "[E]" + super.toString() + " (from: " + convertDateTimeToString(this.from)
+                + " to: " + convertDateTimeToString(this.to) + ")";
     }
 
     /**
@@ -57,7 +58,11 @@ public class Event extends Task {
      */
     @Override
     public String toSaveString() {
-        return String.format("event | %d | %s | %s | %s", super.isDone ? 1 : 0, this.description, convertDateTimeToString(this.from), convertDateTimeToString(this.to));
+        return String.format("event | %d | %s | %s | %s",
+                super.isDone ? 1 : 0,
+                this.description,
+                convertDateTimeToString(this.from),
+                convertDateTimeToString(this.to));
     }
 
 }
