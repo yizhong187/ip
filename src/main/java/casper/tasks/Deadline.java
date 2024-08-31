@@ -26,7 +26,10 @@ public class Deadline extends Task{
 
     @Override
     public String toSaveString() {
-        return String.format("deadline | %d | %s | %s", super.isDone ? 1 : 0, this.description, convertDateTimeToString(this.by));
+        return String.format("deadline | %d | %s | %s",
+                super.isDone ? 1 : 0,
+                this.description,
+                convertDateTimeToString(this.by));
     }
 }
 
