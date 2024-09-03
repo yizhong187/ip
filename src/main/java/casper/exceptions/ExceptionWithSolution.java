@@ -3,7 +3,7 @@ package casper.exceptions;
 /**
  * An abstract base class for exceptions that provide a solution or suggestion to resolve the error.
  */
-public abstract class ExceptionWithSolution extends Exception{
+public abstract class ExceptionWithSolution extends Exception {
     private final String solution;
 
     /**

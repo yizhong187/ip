@@ -4,7 +4,7 @@ package casper.tasks;
  * Represents a "ToDo" task, which is a type of task that only requires a description.
  * Inherits the basic task functionalities from the {@link Task} class.
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
     /**
      * Constructs a new {@code ToDo} task with the specified description.
      * The task is initially marked as not done.

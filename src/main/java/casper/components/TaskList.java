@@ -1,10 +1,11 @@
 package casper.components;
 
+import java.util.ArrayList;
+
 import casper.exceptions.IndexOutOfRangeException;
 import casper.exceptions.InvalidIndexException;
 import casper.tasks.Task;
 
-import java.util.ArrayList;
 
 /**
  * Represents a list of tasks.
@@ -36,7 +37,7 @@ public class TaskList {
 
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            result.append((i + 1)).append(". " ).append(this.tasks.get(i));
+            result.append((i + 1)).append(". ").append(this.tasks.get(i));
             if (i < this.tasks.size() - 1) {
                 result.append("\n");
             }
@@ -125,7 +126,7 @@ public class TaskList {
      */
     public void checkIndexValidity(String argument, String command)
             throws IndexOutOfRangeException, InvalidIndexException {
-        if (!argument.matches("-?\\d+" )) {
+        if (!argument.matches("-?\\d+")) {
             throw new InvalidIndexException(command);
         }
 
@@ -146,7 +147,7 @@ public class TaskList {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
             if (this.tasks.get(i).isKeywordInDescription(keyword)) {
-                result.append((i + 1)).append(". " ).append(this.tasks.get(i));
+                result.append((i + 1)).append(". ").append(this.tasks.get(i));
                 if (i < this.tasks.size() - 1) {
                     result.append("\n");
                 }

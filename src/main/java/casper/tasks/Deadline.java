@@ -8,7 +8,7 @@ import static casper.utils.DateTimeUtils.convertDateTimeToString;
  * Represents a deadline task with a description and a due date.
  * Inherits from {@link Task} and includes functionality for setting and displaying the deadline.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     protected LocalDateTime by;
 

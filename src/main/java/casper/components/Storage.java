@@ -158,10 +158,10 @@ public class Storage {
                 boolean isDone = parts[1].equals("1");
 
                 switch (eventType) {
-                    case "todo" -> taskList.addTask(new ToDo(parts[2], isDone));
-                    case "deadline" -> taskList.addTask(
+                case "todo" -> taskList.addTask(new ToDo(parts[2], isDone));
+                case "deadline" -> taskList.addTask(
                             new Deadline(parts[2], DateTimeUtils.convertStringToDateTime(parts[3]), isDone));
-                    case "event" -> taskList.addTask(
+                case "event" -> taskList.addTask(
                             new Event(parts[2],
                                     DateTimeUtils.convertStringToDateTime(parts[3]),
                                     DateTimeUtils.convertStringToDateTime(parts[4]),

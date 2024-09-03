@@ -21,6 +21,7 @@ public class Ui {
         print("____________________________________________________________");
     }
 
+    // CHECKSTYLE.OFF: LineLength
     private static void printCasper() {
         print("""
                               ('-.      .-')     _ (`-.    ('-.  _  .-')                   ('-. .-.   ('-.     .-') _   \s
@@ -35,6 +36,7 @@ public class Ui {
                 """);
 
     }
+    // CHECKSTYLE.ON: LineLength
 
     /**
      * Prints a welcome message including the Casper ASCII art.
@@ -70,9 +72,9 @@ public class Ui {
      * @param taskCount The current number of tasks in the task list.
      */
     public static void printAddedTaskMessage(String taskString, int taskCount) {
-        print("Got it. I've added this task:\n" +
-                taskString + "\n" +
-                "Now you have " + taskCount + " task(s) in the list.");
+        print("Got it. I've added this task:\n"
+                + taskString + "\n"
+                + "Now you have " + taskCount + " task(s) in the list.");
     }
 
     /**
@@ -82,7 +84,7 @@ public class Ui {
      *              If no tasks match, this string should be empty.
      * @param keyword The keyword used to search the tasks.
      */
-    public static void printFoundTasks(String tasks, String keyword){
+    public static void printFoundTasks(String tasks, String keyword) {
         if (tasks.equals("")) {
             print(String.format("No task found that matches '%s'.", keyword));
         } else {
