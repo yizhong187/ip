@@ -1,8 +1,8 @@
 package casper.tasks;
 
-import java.time.LocalDateTime;
-
 import static casper.utils.DateTimeUtils.convertDateTimeToString;
+
+import java.time.LocalDateTime;
 
 /**
  * Represents an event task with a description, start date-time, and end date-time.
@@ -27,7 +27,7 @@ public class Event extends Task {
     }
 
     /**
-     * Constructs a new {@code Event} with the specified description, start date-time, end date-time, and completion status.
+     * Constructs a new {@code Event} with the specified description, start and end date-time, and completion status.
      *
      * @param description A brief description of the event.
      * @param from The start date and time of the event.

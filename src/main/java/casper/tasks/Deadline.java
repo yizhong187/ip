@@ -1,8 +1,8 @@
 package casper.tasks;
 
-import java.time.LocalDateTime;
-
 import static casper.utils.DateTimeUtils.convertDateTimeToString;
+
+import java.time.LocalDateTime;
 
 /**
  * Represents a deadline task with a description and a due date.
