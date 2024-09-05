@@ -1,5 +1,14 @@
 package casper.components;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 import casper.exceptions.CorruptedSavedTasksException;
 import casper.exceptions.CustomIOException;
 import casper.exceptions.InvalidDateTimeException;
@@ -7,15 +16,6 @@ import casper.tasks.Deadline;
 import casper.tasks.Event;
 import casper.tasks.ToDo;
 import casper.utils.DateTimeUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Utility class for managing tasks in saved local file.
@@ -166,6 +166,7 @@ public class Storage {
                                     DateTimeUtils.convertStringToDateTime(parts[3]),
                                     DateTimeUtils.convertStringToDateTime(parts[4]),
                                     isDone));
+                default -> { }
                 }
 
                 lineNumber++;
