@@ -29,7 +29,7 @@ test {
 }
 
 application {
-    mainClass.set("casper.CasperChat")
+    mainClass.set("Launcher")
 }
 
 shadowJar {
