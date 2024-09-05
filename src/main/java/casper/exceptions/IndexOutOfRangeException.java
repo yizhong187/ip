@@ -8,7 +8,7 @@ public class IndexOutOfRangeException extends ExceptionWithSolution {
     public IndexOutOfRangeException() {
         super("Task index out of range.",
                 "Provide a valid index corresponding to a task. "
-                        + "You may use the `list` command to see all casper.tasks.");
+                        + "You may use the `list` command to see all tasks.");
 
     }
 }
