@@ -73,9 +73,7 @@ public class TaskList {
      * @throws IndexOutOfBoundsException if the index is out of range.
      */
     public void removeTask(int index) {
-        int oldSize = tasks.size();
         this.tasks.remove(index);
-        assert tasks.size() == oldSize - 1;
     }
 
     /**
@@ -84,9 +82,7 @@ public class TaskList {
      * @param task The task to add.
      */
     public void addTask(Task task) {
-        int oldSize = tasks.size();
         this.tasks.add(task);
-        assert tasks.size() == oldSize + 1;
     }
 
     /**
@@ -133,6 +129,7 @@ public class TaskList {
         if (!argument.matches("-?\\d+")) {
             throw new InvalidIndexException(command);
         }
+
         if (Integer.parseInt(argument) > this.tasks.size() || Integer.parseInt(argument) < 0) {
             throw new IndexOutOfRangeException();
         }

@@ -42,14 +42,12 @@ public class Storage {
         Scanner s = new Scanner(f);
         List<String> lines = new ArrayList<>();
 
-        int lineCount = 0;
-
         while (s.hasNextLine()) {
             lines.add(s.nextLine());
-            lineCount++;
         }
+
         s.close();
-        assert lineCount == lines.size();
+
         return lines.toArray(new String[0]);
     }
 
@@ -176,9 +174,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             try {
                 File file = new File(filePath);
-                assert !file.exists();
                 file.createNewFile();
-                assert file.exists();
             } catch (IOException ioException) {
                 throw new CustomIOException(ioException.getMessage());
             }
