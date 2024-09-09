@@ -1,6 +1,7 @@
 package casper.components;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import casper.exceptions.IndexOutOfRangeException;
 import casper.exceptions.InvalidIndexException;
@@ -139,6 +140,15 @@ public class TaskList {
     }
 
     /**
+     * Sorts the tasks in the list using the provided comparator.
+     *
+     * @param comparator The comparator to determine the order of tasks.
+     */
+    public void sortTasks(Comparator<Task> comparator) {
+        this.tasks.sort(comparator);
+    }
+
+    /**
      * Finds tasks in the task list that contain the specified keyword in their description.
      *
      * @param keyword The keyword to search for in the task descriptions.
@@ -159,4 +169,17 @@ public class TaskList {
         return result.toString();
     }
 
+    /**
+     * Gets a string representation of all tasks in the list in a format suitable for saving.
+     *
+     * @return A string where each task is represented in a format suitable for saving,
+     *         with each task's representation separated by a newline.
+     */
+    public String toSaveString() {
+        StringBuilder saveString = new StringBuilder();
+        for (Task task : this.tasks) {
+            saveString.append(task.toSaveString()).append("\n");
+        }
+        return saveString.toString().trim();
+    }
 }

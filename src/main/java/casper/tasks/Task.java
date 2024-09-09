@@ -33,6 +33,23 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns the completion status of the task.
+     *
+     * @return {@code true} if the task is done, {@code false} otherwise.
+     */
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    /**
+     * Returns the description of the task.
+     *
+     * @return A string representing the description of the task.
+     */
+    public String getDescription() {
+        return this.description;
+    }
 
     /**
      * Returns a string representation of the task, including its status icon and description.
