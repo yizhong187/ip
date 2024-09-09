@@ -5,15 +5,6 @@ package casper.components;
  */
 public class Stringifier {
     /**
-     * Returns a line of underscores.
-     *
-     * @return A line of underscores.
-     */
-    public static String getLine() {
-        return "____________________________________________________________\n";
-    }
-
-    /**
      * Returns a welcome message including the Casper ASCII art.
      *
      * @return The welcome message.
