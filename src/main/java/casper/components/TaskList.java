@@ -180,8 +180,6 @@ public class TaskList {
         for (Task task : this.tasks) {
             saveString.append(task.toSaveString()).append("\n");
         }
-
-        System.out.println(saveString.toString().trim());
         return saveString.toString().trim();
     }
 }
