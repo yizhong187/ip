@@ -21,22 +21,6 @@ import casper.utils.DateTimeUtils;
  * Utility class for managing tasks in saved local file.
  */
 public class Storage {
-    private static String getFileContentsAsString(String filePath) throws FileNotFoundException {
-        File f = new File(filePath);
-        Scanner s = new Scanner(f);
-
-        StringBuilder builder = new StringBuilder();
-
-        while (s.hasNextLine()) {
-            builder.append(s.nextLine());
-            builder.append("\n");
-        }
-
-        s.close();
-
-        return builder.toString();
-    }
-
     private static String[] getFileContentsAsArray(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
