@@ -1,5 +1,7 @@
 package casper;
 
+import java.io.File;
+
 import casper.components.Processor;
 import casper.components.Storage;
 import casper.components.Stringifier;
@@ -24,6 +26,7 @@ public class Casper {
     public String loadSavedTasks() {
         try {
             Storage.addSavedTasksToTaskList(FILE_PATH, taskList);
+            assert new File(FILE_PATH).exists();
             return "Loaded saved tasks successfully!";
         } catch (CustomIOException | CorruptedSavedTasksException e) {
             return e.getMessage();
