@@ -14,15 +14,6 @@ public class Stringifier {
     }
 
     /**
-     * Returns a goodbye message.
-     *
-     * @return The goodbye message.
-     */
-    public static String getByeMessage() {
-        return "Bye. Hope to see you again soon!";
-    }
-
-    /**
      * Returns a message confirming that a task has been added.
      *
      * @param taskString The description of the task that was added.
