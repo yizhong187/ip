@@ -36,6 +36,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns the date and time by which the task is due.
+     *
+     * @return A {@link LocalDateTime} object representing the due date and time of the task.
+     */
+    public LocalDateTime getBy() {
+        return by;
+    }
+
+    /**
      * Returns a string representation of the deadline task, including the description and due date.
      *
      * @return A string in the format: "[D][completed] description (by: due date)".
