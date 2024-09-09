@@ -22,7 +22,8 @@ public class Parser {
      *
      * @param argument The argument string to be split.
      * @param keyword The keyword to split the argument by.
-     * @return An array of strings where the first element is the part before the keyword and the second element is the part after the keyword.
+     * @return An array of strings where the first element is the part before the keyword and the second element is the
+     *         part after the keyword.
      */
     public static String[] parseArgumentByKeyword(String argument, String keyword) {
         return argument.split(String.format(" /%s ", keyword), 2);

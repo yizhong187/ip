@@ -10,6 +10,11 @@ import casper.exceptions.CorruptedSavedTasksException;
 import casper.exceptions.CustomIOException;
 import casper.exceptions.ExceptionWithSolution;
 
+/**
+ * Represents the main class for the Casper application.
+ * This class handles the loading of saved tasks,
+ * generating welcome messages, and processing user input.
+ */
 public class Casper {
 
     /**
@@ -23,6 +28,14 @@ public class Casper {
         this.taskList = new TaskList();
     }
 
+    /**
+     * Loads the saved tasks from the file specified by {@code FILE_PATH}
+     * and adds them to the {@code TaskList}.
+     * Returns a success message if the tasks are loaded successfully,
+     * or an error message if an exception occurs.
+     *
+     * @return A message indicating the result of the operation.
+     */
     public String loadSavedTasks() {
         try {
             Storage.addSavedTasksToTaskList(FILE_PATH, taskList);
@@ -33,10 +46,22 @@ public class Casper {
         }
     }
 
+    /**
+     * Returns a welcome message for the user.
+     *
+     * @return A welcome message as a {@code String}.
+     */
     public String welcomeUser() {
         return Stringifier.getWelcomeMessage();
     }
 
+    /**
+     * Processes the user input and returns the corresponding response.
+     * Handles various exceptions and returns their messages if any occur.
+     *
+     * @param input The user input to be processed.
+     * @return The response generated from processing the input as a {@code String}.
+     */
     public String getResponse(String input) {
         try {
             return Processor.processInput(input, taskList);

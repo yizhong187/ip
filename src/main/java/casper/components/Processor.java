@@ -1,17 +1,18 @@
 package casper.components;
 
+import static casper.utils.DateTimeUtils.convertStringToDateTime;
+
+import java.util.Objects;
+
 import casper.Casper;
-import casper.exceptions.ExceptionWithSolution;
 import casper.exceptions.CustomIOException;
-import casper.exceptions.MissingArgumentException;
+import casper.exceptions.ExceptionWithSolution;
 import casper.exceptions.InvalidCommandException;
+import casper.exceptions.MissingArgumentException;
 import casper.tasks.Deadline;
 import casper.tasks.Event;
 import casper.tasks.ToDo;
 
-import java.util.Objects;
-
-import static casper.utils.DateTimeUtils.convertStringToDateTime;
 
 /**
  * Processes user input commands and manages tasks in the task list.
