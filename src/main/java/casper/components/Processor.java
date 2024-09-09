@@ -2,9 +2,13 @@ package casper.components;
 
 import static casper.utils.DateTimeUtils.convertStringToDateTime;
 
+import java.util.Arrays;
+import java.util.List;
+
 import casper.Casper;
 import casper.exceptions.CustomIOException;
 import casper.exceptions.IndexOutOfRangeException;
+import casper.exceptions.InvalidArgumentException;
 import casper.exceptions.InvalidCommandException;
 import casper.exceptions.InvalidDateTimeException;
 import casper.exceptions.InvalidIndexException;
@@ -13,12 +17,18 @@ import casper.exceptions.NoArgumentException;
 import casper.tasks.Deadline;
 import casper.tasks.Event;
 import casper.tasks.ToDo;
+import casper.tasks.comparators.AlphabeticalComparator;
+import casper.tasks.comparators.StatusComparator;
+import casper.tasks.comparators.TimeComparator;
+import casper.tasks.comparators.TypeComparator;
 
 //CHECKSTYLE.OFF: Regexp
 /**
  * Processes user input commands and manages tasks in the task list.
  */
 public class Processor {
+
+    private static final List<String> VALID_METHODS = Arrays.asList("alphabetical", "type", "time");
 
     /**
      * Processes the user input command and updates the task list accordingly.
@@ -34,9 +44,9 @@ public class Processor {
      * @throws MissingArgumentException If required arguments are missing for task creation commands.
      * @throws InvalidDateTimeException If there is an issue with the date and time format provided.
      */
-    public static String processInput(String input, TaskList taskList) throws CustomIOException, InvalidIndexException,
-            NoArgumentException, IndexOutOfRangeException, InvalidCommandException,
-            MissingArgumentException, InvalidDateTimeException {
+    public static String processInput(String input, TaskList taskList) throws CustomIOException,
+            InvalidIndexException, NoArgumentException, IndexOutOfRangeException, InvalidCommandException,
+            MissingArgumentException, InvalidDateTimeException, InvalidArgumentException {
 
         String[] inputParts = Parser.parseInputToCommandAndArgument(input);
         String command = inputParts[0];
@@ -45,6 +55,7 @@ public class Processor {
         return switch (command) {
         case "bye" -> handleBye();
         case "list" -> handleList(taskList);
+        case "sort" -> handleSort(argument, taskList);
         case "mark", "unmark", "delete" -> handleTaskModification(command, argument, taskList);
         case "find" -> handleFind(argument, taskList);
         case "todo", "deadline", "event" -> handleTaskCreation(command, argument, taskList);
@@ -69,6 +80,39 @@ public class Processor {
      */
     private static String handleList(TaskList taskList) {
         return taskList.toString();
+    }
+
+    private static String handleSort(String argument, TaskList taskList) throws NoArgumentException,
+            MissingArgumentException, InvalidArgumentException, CustomIOException {
+        Parser.argumentCheck(argument, "sort");
+
+        String[] splitArgumentBy = Parser.parseSortArgument(argument);
+
+        if (!splitArgumentBy[0].equals("/by") || splitArgumentBy[1].equals("")) {
+            throw new MissingArgumentException("sort", "/by",
+                    "sort /by [method], where [method] can be `alphabetical`, `type`, `time`, `status`");
+        }
+
+        switch (splitArgumentBy[1]) {
+        case "alphabetical" -> {
+            taskList.sortTasks(new AlphabeticalComparator());
+        }
+        case "type" -> {
+            taskList.sortTasks(new TypeComparator());
+        }
+        case "time" -> {
+            taskList.sortTasks(new TimeComparator());
+        }
+        case "status" -> {
+            taskList.sortTasks(new StatusComparator());
+        }
+        default -> throw new InvalidArgumentException("sort", "/by", splitArgumentBy[1],
+                "`alphabetical`, `type`, `time`,`status`");
+        }
+
+        Storage.replaceAllSavedTasks(Casper.FILE_PATH, taskList.toSaveString());
+        return "I've sorted the tasks as requested!\n" + taskList;
+
     }
 
     /**
@@ -151,9 +195,6 @@ public class Processor {
         switch (command) {
         case "todo" -> {
             taskList.addTask(new ToDo(argument));
-            Storage.addTaskToSavedTasks(Casper.FILE_PATH, taskList.getTaskSaveString(taskList.size() - 1));
-
-            return Stringifier.getAddedTaskMessage(taskList.getTaskString(taskList.size() - 1), taskList.size());
         }
 
         case "deadline" -> {
@@ -164,11 +205,7 @@ public class Processor {
                         "deadline [task description] /by [deadline]");
             }
             String by = parsedForBy[1];
-
             taskList.addTask(new Deadline(description, convertStringToDateTime(by)));
-            Storage.addTaskToSavedTasks(Casper.FILE_PATH, taskList.getTaskSaveString(taskList.size() - 1));
-
-            return Stringifier.getAddedTaskMessage(taskList.getTaskString(taskList.size() - 1), taskList.size());
         }
 
         case "event" -> {
@@ -190,13 +227,13 @@ public class Processor {
 
             String to = parsedForTo[1];
             taskList.addTask(new Event(description, convertStringToDateTime(from), convertStringToDateTime(to)));
-            Storage.addTaskToSavedTasks(Casper.FILE_PATH, taskList.getTaskSaveString(taskList.size() - 1));
-
-            return Stringifier.getAddedTaskMessage(taskList.getTaskString(taskList.size() - 1), taskList.size());
         }
 
         default -> throw new InvalidCommandException(command);
         }
+
+        Storage.addTaskToSavedTasks(Casper.FILE_PATH, taskList.getTaskSaveString(taskList.size() - 1));
+        return Stringifier.getAddedTaskMessage(taskList.getTaskString(taskList.size() - 1), taskList.size());
     }
 
 }
