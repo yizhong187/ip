@@ -30,6 +30,20 @@ public class Parser {
     }
 
     /**
+     * Parses a sort command's argument into two parts: the first three characters and the rest of the string.
+     * If the argument is shorter than or equal to three characters, the second part will be empty.
+     *
+     * @param argument The string argument to be parsed.
+     * @return A string array containing two elements: the first three characters (or the entire argument if it is
+     *         shorter than three characters), and the remainder of the argument (or an empty string if none).
+     */
+    public static String[] parseSortArgument(String argument) {
+        String firstPart = argument.length() > 3 ? argument.substring(0, 3) : argument;
+        String secondPart = argument.length() > 3 ? argument.substring(3).trim() : "";
+        return new String[]{firstPart, secondPart};
+    }
+
+    /**
      * Checks if the argument is null and throws an exception if it is.
      *
      * @param argument The argument to check.
