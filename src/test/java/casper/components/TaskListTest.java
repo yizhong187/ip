@@ -1,16 +1,16 @@
 package casper.components;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
 
 import casper.tasks.Deadline;
 import casper.tasks.Event;
 import casper.tasks.Task;
 import casper.tasks.ToDo;
 
-import java.time.LocalDateTime;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
     @Test
