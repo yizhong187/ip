@@ -171,4 +171,19 @@ public class Storage {
         }
     }
 
+    /**
+     * Replaces all existing tasks in the specified task file with the provided new text.
+     * This method will overwrite the entire file content with the new task data.
+     *
+     * @param filePath The path to the file where task data is saved. This file will be completely overwritten.
+     * @param newText The new task data to write to the file. This should include all tasks in the desired format.
+     * @throws CustomIOException If an I/O error occurs during the write operation, such as issues with file access.
+     */
+    public static void replaceAllSavedTasks(String filePath, String newText) throws CustomIOException {
+        try {
+            writeToFile(filePath, "\n" + newText);
+        } catch (IOException e) {
+            throw new CustomIOException(e.getMessage());
+        }
+    }
 }
