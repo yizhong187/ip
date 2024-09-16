@@ -39,6 +39,7 @@ public class Storage {
 
     private static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
+        fw.write(System.lineSeparator());
         fw.write(textToAdd);
         fw.close();
     }
@@ -115,9 +116,13 @@ public class Storage {
      * @param newText The text to add as a new task.
      * @throws CustomIOException If an I/O error occurs during the operation.
      */
-    public static void addTaskToSavedTasks(String filePath, String newText) throws CustomIOException {
+    public static void addTaskToSavedTasks(String filePath, String newText, Boolean isFirst) throws CustomIOException {
         try {
-            addLineToFile(filePath, newText);
+            if (isFirst) {
+                writeToFile(filePath, newText);
+            } else {
+                addLineToFile(filePath, newText);
+            }
         } catch (IOException e) {
             throw new CustomIOException(e.getMessage());
         }
