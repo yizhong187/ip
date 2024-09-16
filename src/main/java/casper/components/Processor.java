@@ -232,7 +232,8 @@ public class Processor {
         default -> throw new InvalidCommandException(command);
         }
 
-        Storage.addTaskToSavedTasks(Casper.FILE_PATH, taskList.getTaskSaveString(taskList.size() - 1));
+        Storage.addTaskToSavedTasks(Casper.FILE_PATH, taskList.getTaskSaveString(taskList.size() - 1),
+                taskList.size() == 1);
         return Stringifier.getAddedTaskMessage(taskList.getTaskString(taskList.size() - 1), taskList.size());
     }
 
