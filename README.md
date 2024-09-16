@@ -8,7 +8,6 @@ Casper is an application designed to manage tasks efficiently through a Command 
 commands for task creation, modification, sorting, and listing tasks. The app is built to handle various types of 
 tasks like `todo`, `deadline`, and `event`, providing comprehensive task management capabilities.
 
----
 ## Quick Start
 #### 1. Ensure Java 17 or higher is installed on your computer.
 #### 2. Download the latest `casper.jar` file from [here](#).
@@ -24,7 +23,6 @@ Here are some example commands you can try:
 - `mark 1`: Marks the second task as complete.
 #### 6. Refer to the Features section below for more details about each command.
 
----
 
 ## Features
 
@@ -98,7 +96,7 @@ Adds a new todo task.
 
 Example:
 ```bash
-todo Buy milk
+todo buy milk
 ```
 
 #### 9. `deadline [description] /by [date]`
@@ -106,7 +104,7 @@ Adds a new deadline task with a specific date.
 
 Example:
 ```bash 
-deadline Submit assignment /by 2024-09-20
+deadline submit assignment /by 2024-09-20
 ```
 
 #### 10. `event [description] /from [start time] /to [end time]`
@@ -114,15 +112,11 @@ Adds a new event task with start and end times.
 
 Example:
 ```bash 
-event Attend conference /from 2024-09-20 10:00 /to 2024-09-20 12:00`
+event attend conference /from 2024-09-20 10:00 /to 2024-09-20 12:00`
 ```
-
----
 
 ## Saving and Editing Data
 
 - **Data is saved automatically** after every command that modifies the task list.
 - Data is stored in a file `casper.txt` in the application's `/data` directory.
 - You can manually edit the `casper.txt` file, but be cautious as incorrect formats can lead to errors or data loss.
-
----
