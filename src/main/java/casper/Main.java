@@ -34,6 +34,7 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setCasper(casper);
             fxmlLoader.<MainWindow>getController().addStartUpMessage();
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
