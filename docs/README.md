@@ -10,7 +10,8 @@ java -jar casper.jar
 Here are some example commands you can try:
 - `list`: Lists all tasks.
 - `todo buy milk`: Adds a new todo task with the description "buy milk".
-- `mark 1`: Marks the second task as complete.
+- `mark 1`: Marks the first task as complete.
+
 #### 6. Refer to the Features section below for more details about each command.
 
 
@@ -105,5 +106,5 @@ event attend conference /from 19-12-2024 10:00 /to 19-12-2024 12:00`
 ## Saving and Editing Data
 
 - **Data is saved automatically** after every command that modifies the task list.
-- Data is stored in a file `casper.txt` in the application's `/data` directory.
+- Data is stored in a file `casper.txt` in the application's root directory.
 - You can manually edit the `casper.txt` file, but be cautious as incorrect formats can lead to errors or data loss.
