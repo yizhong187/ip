@@ -20,7 +20,7 @@ public class Casper {
     /**
      * The file path to the saved tasks file.
      */
-    public static final String FILE_PATH = "src/main/java/data/casper.txt";
+    public static final String FILE_PATH = "casper.txt";
 
     private TaskList taskList;
 
