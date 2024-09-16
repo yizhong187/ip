@@ -30,22 +30,19 @@ Here are some example commands you can try:
 - Words surrounded by `[square brackets]` are the parameters to be supplied by the user.  
   For example: `todo [description]` requires a **description**.
 - Commands like `list` do not require additional parameters.
+- All date-time parameters are to be given in the `DD-MM-YYYY HH:mm` format.   
+  For example: `19-06-2050 12:30`
 
 ### Available Commands:
 
-#### 1. `help`
-Displays a list of all available commands.
-```bash
-help
-```
 
-#### 2. `list`
+#### 1. `list`
 Lists all tasks in the current task list.
 ```bash
 list
 ```
 
-#### 3. `sort /by [method]`
+#### 2. `sort /by [method]`
 Sorts the task list by the specified method.
 
 Available methods:
@@ -59,7 +56,7 @@ Example:
 sort /by alphabetical
 ```
 
-#### 4. `mark [task index]`
+#### 3. `mark [task index]`
 Marks a task as complete.
 
 Example:
@@ -67,7 +64,7 @@ Example:
 mark 2
 ```
 
-#### 5. `unmark [task index]`
+#### 4. `unmark [task index]`
 Unmarks a task, indicating it is incomplete.
 
 Example:
@@ -75,7 +72,7 @@ Example:
 unmark 2
 ```
 
-#### 6. `delete [task index]`
+#### 5. `delete [task index]`
 Deletes a task from the task list.
 
 Example:
@@ -83,7 +80,7 @@ Example:
 delete 3
 ```
 
-#### 7. `find [keyword]`
+#### 6. `find [keyword]`
 Finds tasks containing the specified keyword.
 
 Example:
@@ -91,7 +88,7 @@ Example:
 find homework
 ```
 
-#### 8. `todo [description]`
+#### 7. `todo [description]`
 Adds a new todo task.
 
 Example:
@@ -99,20 +96,20 @@ Example:
 todo buy milk
 ```
 
-#### 9. `deadline [description] /by [date]`
+#### 8. `deadline [description] /by [date]`
 Adds a new deadline task with a specific date.
 
 Example:
 ```bash 
-deadline submit assignment /by 2024-09-20
+deadline submit assignment /by 19-12-2024 10:00
 ```
 
-#### 10. `event [description] /from [start time] /to [end time]`
+#### 9. `event [description] /from [start time] /to [end time]`
 Adds a new event task with start and end times.
 
 Example:
 ```bash 
-event attend conference /from 2024-09-20 10:00 /to 2024-09-20 12:00`
+event attend conference /from 19-12-2024 10:00 /to 19-12-2024 12:00`
 ```
 
 ## Saving and Editing Data
