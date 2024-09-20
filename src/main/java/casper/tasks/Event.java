@@ -27,15 +27,6 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the start date and time of the task.
-     *
-     * @return A {@link LocalDateTime} object representing the start date and time of the task.
-     */
-    public LocalDateTime getFrom() {
-        return from;
-    }
-
-    /**
      * Constructs a new {@code Event} with the specified description, start and end date-time, and completion status.
      *
      * @param description A brief description of the event.
@@ -47,6 +38,15 @@ public class Event extends Task {
         super(description, isDone);
         this.from = from;
         this.to = to;
+    }
+
+    /**
+     * Returns the start date and time of the task.
+     *
+     * @return A {@link LocalDateTime} object representing the start date and time of the task.
+     */
+    public LocalDateTime getFrom() {
+        return from;
     }
 
     /**
