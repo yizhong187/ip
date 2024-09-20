@@ -143,6 +143,10 @@ public class Storage {
         try {
             String[] lines = getFileContentsAsArray(filePath);
 
+            if (lines.length == 0) {
+                return;
+            }
+
             for (String line : Arrays.copyOfRange(lines, 1, lines.length)) {
                 String[] parts = line.split(" \\| ");
                 String eventType = parts[0];
