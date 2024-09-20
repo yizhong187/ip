@@ -1,6 +1,6 @@
 ## Quick Start
 #### 1. Ensure Java 17 or higher is installed on your computer.
-#### 2. Download the latest `casper.jar` file from [here](#).
+#### 2. Download the latest `casper.jar` file from [here](https://github.com/yizhong187/ip/releases/download/v0.2/casper.jar).
 #### 3. Navigate to the folder where you downloaded the `.jar` file.
 #### 4. Run the application using the following command:
 ```bash
