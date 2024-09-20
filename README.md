@@ -110,7 +110,7 @@ Adds a new event task with start and end times.
 
 Example:
 ```bash 
-event attend conference /from 19-12-2024 10:00 /to 19-12-2024 12:00`
+event attend conference /from 19-12-2024 10:00 /to 19-12-2024 12:00
 ```
 
 ## Saving and Editing Data
